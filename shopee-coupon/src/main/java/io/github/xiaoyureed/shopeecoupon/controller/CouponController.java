@@ -39,14 +39,6 @@ public class CouponController {
         return R.ok();
     }
 
-    @Value("${coupon.name}")
-    private String name;
-
-    @RequestMapping("/config-test")
-    public R configTest() {
-        return R.ok().put("name", name);
-    }
-
     /**
      * 列表
      */

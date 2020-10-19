@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: shopee-third-party
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.1.107:8848
+        namespace:
+        extension-configs:
+          - data-id: oss.yml
+            group: DEFAULT_GROUP
+            refresh: true

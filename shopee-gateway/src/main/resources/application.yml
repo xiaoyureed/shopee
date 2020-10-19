@@ -12,3 +12,19 @@ spring:
           uri: https://www.baidu.com
           predicates:
             - Query=url, baidu
+        - id: third_party_route
+          uri: lb://shopee-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            # 在yml文档中 $ 要写成 $\
+            - RewritePath=/api/thirdparty/(?<segment>/?.*),/$\{segment}
+        - id: renren_fast_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/renren-fast/$\{segment}
+    nacos:
+      discovery:
+        server-addr: 192.168.1.107:8848

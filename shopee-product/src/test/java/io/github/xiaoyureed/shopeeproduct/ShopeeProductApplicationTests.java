@@ -1,7 +1,6 @@
 package io.github.xiaoyureed.shopeeproduct;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import io.github.xiaoyureed.shopeeproduct.entity.BrandEntity;
 import io.github.xiaoyureed.shopeeproduct.service.BrandService;
 import org.junit.jupiter.api.Test;

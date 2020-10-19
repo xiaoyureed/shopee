@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: shopee-product
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.1.107:8848
+        namespace: 62039e73-b4a2-4e04-b2f2-ef47a217f562

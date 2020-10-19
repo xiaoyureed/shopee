@@ -1,8 +1,6 @@
 server:
   port: 8300
 spring:
-  application:
-    name: shopee-order
   datasource:
     username: root
     password: root
@@ -10,7 +8,8 @@ spring:
     url: jdbc:mysql://192.168.1.107:3306/oms
   cloud:
     nacos:
-      server-addr: localhost:8848
+      discovery:
+        server-addr: 192.168.1.107:8848
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   global-config:
