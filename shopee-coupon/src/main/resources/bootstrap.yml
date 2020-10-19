@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: shopee-coupon
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+#        extension-configs:
+#          - refresh: true
+#            data-id: datasource.yml
+#            group: dev
+#
+#        group: dev # ==> dev test prod
+#        namespace: 907e0dc3-81c0-42b9-bc5a-466c915d25d8 # ==> module name id
