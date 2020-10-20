@@ -2,7 +2,6 @@ server:
   port: 88
 spring:
   cloud:
-    gateway:
       routes:
         - id: qq_route
           uri: https://www.qq.com
@@ -24,7 +23,8 @@ spring:
           predicates:
             - Path=/api/**
           filters:
-            - RewritePath=/api/(?<segment>/?.*),/renren-fast/$\{segment}
+            # 此工厂将/api/(?.*)重写为{segment}，然后转发到 lb://renren-fast
+            - RewritePath=/api(?<segment>/?.*), /renren-fast$\{segment}
     nacos:
       discovery:
         server-addr: 192.168.1.107:8848

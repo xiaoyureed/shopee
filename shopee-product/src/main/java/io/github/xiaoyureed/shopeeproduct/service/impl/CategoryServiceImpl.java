@@ -41,6 +41,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void removeMenuByIds(List<Long> cateIds) {
+        // todo Check whether the menu is used in other place
+
+        baseMapper.deleteBatchIds(cateIds);
+    }
+
     private void fillChildren(CategoryEntity parent, List<CategoryEntity> cates) {
         List<CategoryEntity> children = cates.stream()
                 .filter(cate -> cate.getParentCid().equals(parent.getCatId()))

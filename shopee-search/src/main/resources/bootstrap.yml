@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: shopee-search
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.1.107:8848
+        namespace:
