@@ -2,6 +2,7 @@ server:
   port: 88
 spring:
   cloud:
+    gateway:
       routes:
         - id: qq_route
           uri: https://www.qq.com
@@ -11,6 +12,7 @@ spring:
           uri: https://www.baidu.com
           predicates:
             - Query=url, baidu
+
         - id: third_party_route
           uri: lb://shopee-third-party
           predicates:
@@ -18,6 +20,7 @@ spring:
           filters:
             # 在yml文档中 $ 要写成 $\
             - RewritePath=/api/thirdparty/(?<segment>/?.*),/$\{segment}
+
         - id: renren_fast_route
           uri: lb://renren-fast
           predicates:
@@ -25,6 +28,12 @@ spring:
           filters:
             # 此工厂将/api/(?.*)重写为{segment}，然后转发到 lb://renren-fast
             - RewritePath=/api(?<segment>/?.*), /renren-fast$\{segment}
+        - id: product_route
+          uri: lb://shopee-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api(?<segment>/?.*), $\{segment}
     nacos:
       discovery:
-        server-addr: 192.168.1.107:8848
+        server-addr: localhost:8848

@@ -2,7 +2,7 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 192.168.1.107:8848
-        namespace: 67805abe-4566-49ca-b6ab-bcccee81eec1
+        server-addr: localhost:8848
+        namespace: b942567e-03f1-470e-b02e-91743b3bcd7e
   application:
     name: shopee-gateway

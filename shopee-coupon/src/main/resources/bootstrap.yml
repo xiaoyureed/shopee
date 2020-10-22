@@ -4,14 +4,14 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 192.168.1.107:8848
+        server-addr: localhost:8848
 #        extension-configs:
 #          - refresh: true
 #            data-id: datasource.yml
 #            group: dev
 #
 #        group: dev # ==> dev test prod
-        namespace: 473205b3-2e5a-4113-acae-63a7142f029a
+        namespace: 8f2d4f22-2448-4402-8fda-4dda6d22137b
         extension-configs:
           - data-id: demo-test.yml
             group: tt

@@ -1,5 +1,8 @@
 -- ware management system
 
+create database wms;
+use wms;
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

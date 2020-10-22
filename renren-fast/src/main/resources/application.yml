@@ -5,10 +5,9 @@ server:
     max-threads: 1000
     min-spare-threads: 30
   port: 8080
-  connection-timeout: 5000ms
+#  connection-timeout: 5000ms
   servlet:
     context-path: /renren-fast
-
 spring:
   # 环境 dev|test|prod
   profiles:
@@ -42,7 +41,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.1.107:8848
+        server-addr: localhost:8848
 #  resources:
 #    add-mappings: false
 

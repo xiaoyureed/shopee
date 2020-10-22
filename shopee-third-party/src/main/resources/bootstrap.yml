@@ -4,9 +4,9 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 192.168.1.107:8848
-        namespace:
-        extension-configs:
-          - data-id: oss.yml
-            group: DEFAULT_GROUP
-            refresh: true
+        server-addr: localhost:8848
+        namespace: bf14502d-c606-4bda-b516-a15e3b10e2b5
+#        extension-configs:
+#          - data-id: oss.yml
+#            group: DEFAULT_GROUP
+#            refresh: true

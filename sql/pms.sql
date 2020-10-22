@@ -1,5 +1,9 @@
 -- product management system
 
+
+create database pms;
+use pms;
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

@@ -19,7 +19,7 @@ public class GlobalCorsConfig {
     /**
      * 全局跨域
      *
-     * you can also onfigure it in file:
+     * you can also configure it in file:
      * https://docs.spring.io/spring-cloud-gateway/docs/2.2.5.RELEASE/reference/html/#cors-configuration
      */
     @Bean

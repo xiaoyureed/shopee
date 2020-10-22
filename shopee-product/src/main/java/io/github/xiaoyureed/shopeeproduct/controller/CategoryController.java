@@ -27,13 +27,13 @@ import io.github.xiaoyureed.shopeecommon.utils.R;
  * @date 2020-10-06 18:28:59
  */
 @RestController
-@RequestMapping("shopeeproduct/category")
+@RequestMapping("/product/category")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
     /**
-     * 列表
+     * 三级列表
      */
     @RequestMapping("/list/tree")
     //@RequiresPermissions("shopeeproduct:category:list")

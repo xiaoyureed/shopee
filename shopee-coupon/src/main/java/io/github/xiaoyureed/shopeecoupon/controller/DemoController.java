@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class DemoController {
-//    @Value("${aa.bb}")
-    @NacosValue(value = "${aa.bb}", autoRefreshed = true)
+    @Value("${aa.bb}")
+//    @NacosValue(value = "${aa.bb}", autoRefreshed = true)
     private String bb;
 
     @GetMapping("/demo")

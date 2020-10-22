@@ -1,5 +1,8 @@
 -- user management system
 
+create database ums;
+use ums;
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -12,7 +15,7 @@ CREATE TABLE `ums_growth_change_history`  (
                                               `member_id` bigint(20) NULL DEFAULT NULL COMMENT 'member_id',
                                               `create_time` datetime NULL DEFAULT NULL COMMENT 'create_time',
                                               `change_count` int(11) NULL DEFAULT NULL COMMENT '改变的值（正负计数）',
-                                              `note` varchar CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+                                              `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
                                               `source_type` tinyint(4) NULL DEFAULT NULL COMMENT '积分来源[0-购物，1-管理员修改]',
                                               PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '成长值变化历史记录' ROW_FORMAT = Dynamic;
@@ -26,7 +29,7 @@ CREATE TABLE `ums_integration_change_history`  (
                                                    `member_id` bigint(20) NULL DEFAULT NULL COMMENT 'member_id',
                                                    `create_time` datetime NULL DEFAULT NULL COMMENT 'create_time',
                                                    `change_count` int(11) NULL DEFAULT NULL COMMENT '变化的值',
-                                                   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+                                                   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
                                                    `source_tyoe` tinyint(4) NULL DEFAULT NULL COMMENT '来源[0->购物；1->管理员修改;2->活动]',
                                                    PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '积分变化历史记录' ROW_FORMAT = Dynamic;
@@ -98,7 +101,7 @@ CREATE TABLE `ums_member_level`  (
                                      `priviledge_free_freight` tinyint(4) NULL DEFAULT NULL COMMENT '是否有免邮特权',
                                      `priviledge_member_price` tinyint(4) NULL DEFAULT NULL COMMENT '是否有会员价格特权',
                                      `priviledge_birthday` tinyint(4) NULL DEFAULT NULL COMMENT '是否有生日特权',
-                                     `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+                                     `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
                                      PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1289379741483438083 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员等级' ROW_FORMAT = Dynamic;
 

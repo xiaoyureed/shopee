@@ -1,5 +1,9 @@
 -- sales management system 营销系统 ==> coupon
 
+create database sms;
+use sms;
+
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

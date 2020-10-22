@@ -1,5 +1,9 @@
 -- order management system
 
+create database oms;
+use oms;
+
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

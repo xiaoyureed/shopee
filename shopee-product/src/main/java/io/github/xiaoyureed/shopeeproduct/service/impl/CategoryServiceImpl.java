@@ -33,11 +33,20 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     @Override
     public List<CategoryEntity> tree() {
-        List<CategoryEntity> cates = baseMapper.selectList(null);
-        return cates.stream()
+        List<CategoryEntity> all = baseMapper.selectList(null);
+        return all.stream()
                 .filter(cate -> cate.getParentCid() == 0)
-                .peek(cate -> fillChildren(cate, cates))
+                .peek(cate -> cate.setChildren(resolveChildren(cate, all)))
                 .sorted(Comparator.comparingLong(CategoryEntity::getCatId))
+                .collect(Collectors.toList());
+    }
+
+    private List<CategoryEntity> resolveChildren(CategoryEntity parent, List<CategoryEntity> all) {
+        return all.stream()
+                // filter out sub menu
+                .filter(ca -> ca.getParentCid().equals(parent.getCatId()))
+                // fill children for sub menu
+                .peek(ca -> ca.setChildren(resolveChildren(ca, all)))
                 .collect(Collectors.toList());
     }
 
@@ -48,16 +57,19 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         baseMapper.deleteBatchIds(cateIds);
     }
 
-    private void fillChildren(CategoryEntity parent, List<CategoryEntity> cates) {
-        List<CategoryEntity> children = cates.stream()
-                .filter(cate -> cate.getParentCid().equals(parent.getCatId()))
-                .sorted(Comparator.comparingLong(CategoryEntity::getCatId))
-                .collect(Collectors.toList());
-        if (children.size() > 0) {
-            children.forEach(cate -> fillChildren(cate, children));
-            parent.setChildren(children);
-        }
-    }
+//    private void fillChildren(CategoryEntity parent, List<CategoryEntity> all) {
+//        List<CategoryEntity> children = all.stream()
+//                // filter parent's child
+//                .filter(cate -> cate.getParentCid().equals(parent.getCatId()))
+//                // sort
+//                .sorted(Comparator.comparingLong(CategoryEntity::getCatId))
+//                .collect(Collectors.toList());
+//        if (children.size() > 0) {
+//            children.forEach(cate -> fillChildren(cate, children));
+//            // fill children for parent
+//            parent.setChildren(children);
+//        }
+//    }
 
 
 }
