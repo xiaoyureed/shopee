@@ -28,6 +28,7 @@ spring:
           filters:
             # 此工厂将/api/(?.*)重写为{segment}，然后转发到 lb://renren-fast
             - RewritePath=/api(?<segment>/?.*), /renren-fast$\{segment}
+
         - id: product_route
           uri: lb://shopee-product
           predicates:
@@ -37,3 +38,6 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+logging:
+  level:
+    io.github.xiaoyureed: debug
