@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.xiaoyureed.shopeecoupon.entity.SeckillSessionEntity;
 import io.github.xiaoyureed.shopeecoupon.service.SeckillSessionService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
-import io.github.xiaoyureed.shopeecommon.utils.R;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.R;
 
 
 

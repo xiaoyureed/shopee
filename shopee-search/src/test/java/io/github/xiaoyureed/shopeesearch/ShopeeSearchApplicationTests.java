@@ -2,8 +2,9 @@ package io.github.xiaoyureed.shopeesearch;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.xiaoyureed.shopeecommon.util.StringUtils;
 import io.github.xiaoyureed.shopeesearch.config.EsConfig;
-import lombok.*;
+import lombok.Data;
 import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -15,21 +16,24 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 @SpringBootTest
 class ShopeeSearchApplicationTests {
 
+    @Qualifier("esClient")
     @Autowired
     private RestHighLevelClient client;
 
@@ -40,21 +44,52 @@ class ShopeeSearchApplicationTests {
     void testEsInsert() throws IOException {
         IndexRequest usersIndexReq = new IndexRequest("users");
 
-        usersIndexReq.id("1").source(objectMapper.writeValueAsString(
-                User.builder().age(11).name("xiii").gender("mix")), XContentType.JSON);
+        User userInsert = new User();
+        userInsert.setGender("female");
+        userInsert.setAge(11);
+        userInsert.setName("xy");
+
+        usersIndexReq.id("1").source(objectMapper.writeValueAsString(userInsert), XContentType.JSON);
 
         IndexResponse usersIndexResp = client.index(usersIndexReq, EsConfig.COMMON_OPTIONS);
         System.out.println(usersIndexResp);
 
-        // batch opts
-//        BulkResponse bulkResp = client.bulk(new BulkRequest().add(usersIndexReq), EsConfig.COMMON_OPTIONS);
-//        if (bulkResp.hasFailures()) {
-//            // error log
-//            List<String> ids = Arrays.stream(bulkResp.getItems()).map(BulkItemResponse::getId).collect(Collectors.toList());
-//            System.out.println(ids);
-//        }
 
     }
+
+    @Test
+    void testBatchInsert() throws IOException {
+        BulkRequest bulk = new BulkRequest();
+
+        LongStream.rangeClosed(2, 10).mapToObj(id -> {
+            User ret = new User();
+            ret.setId(id);
+            ret.setName(StringUtils.genChineseNameJianHan(true, 2));
+            ret.setGender(new Random().nextInt() % 2 == 0 ? "male" : "female");
+            return ret;
+        }).forEach(u -> bulk.add(new IndexRequest("users")
+                .id(u.getId().toString())
+                .source(json(u), XContentType.JSON)));
+
+//         batch opts
+        BulkResponse bulkResp = client.bulk(bulk, EsConfig.COMMON_OPTIONS);
+        if (bulkResp.hasFailures()) {
+            // error log
+            List<String> ids = Arrays.stream(bulkResp.getItems())
+                    .map(BulkItemResponse::getId).collect(Collectors.toList());
+            System.out.println(ids);
+        }
+    }
+
+    private String json(Object object) {
+        try {
+            return objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            throw new RuntimeException("json error", e);
+        }
+    }
+
 
     @Test
     public void testEsSearch() throws IOException {
@@ -97,11 +132,9 @@ class ShopeeSearchApplicationTests {
 
     }
 
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
     @Data
     static class User {
+        private Long id;
         private String name;
         private String gender;
         private Integer age;

@@ -1,7 +1,7 @@
 package io.github.xiaoyureed.shopeeproduct.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
 import io.github.xiaoyureed.shopeeproduct.entity.AttrGroupEntity;
 
 import java.util.Map;
@@ -16,5 +16,9 @@ import java.util.Map;
 public interface AttrGroupService extends IService<AttrGroupEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    PageUtils queryPage(Map<String, Object> params, Long catelogId);
+
+    AttrGroupEntity getByIdWithCatePath(Long attrGroupId);
 }
 

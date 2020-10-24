@@ -3,6 +3,7 @@ package io.github.xiaoyureed.shopeeproduct.service.impl;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -10,8 +11,8 @@ import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
-import io.github.xiaoyureed.shopeecommon.utils.Query;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
+import io.github.xiaoyureed.shopeecommon.Query;
 
 import io.github.xiaoyureed.shopeeproduct.dao.CategoryDao;
 import io.github.xiaoyureed.shopeeproduct.entity.CategoryEntity;
@@ -56,6 +57,26 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
         baseMapper.deleteBatchIds(cateIds);
     }
+
+    @Override
+    public Long[] findCatelogPath(Long categoryId) {
+        LinkedList<Long> result = new LinkedList<>();
+
+        appendParent(categoryId, result);
+
+        return  result.toArray(new Long[result.size()]);
+    }
+
+    private void appendParent(Long categoryId, LinkedList<Long> result) {
+        result.addFirst(categoryId);
+        CategoryEntity cate = this.getById(categoryId);
+        Long parentCid = cate.getParentCid();
+        if (parentCid != 0) {
+            appendParent(parentCid, result);
+        }
+
+    }
+
 
 //    private void fillChildren(CategoryEntity parent, List<CategoryEntity> all) {
 //        List<CategoryEntity> children = all.stream()

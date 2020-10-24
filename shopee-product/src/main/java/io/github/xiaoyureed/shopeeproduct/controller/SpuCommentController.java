@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.xiaoyureed.shopeeproduct.entity.SpuCommentEntity;
 import io.github.xiaoyureed.shopeeproduct.service.SpuCommentService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
-import io.github.xiaoyureed.shopeecommon.utils.R;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.R;
 
 
 

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.xiaoyureed.shopeecoupon.entity.MemberPriceEntity;
 import io.github.xiaoyureed.shopeecoupon.service.MemberPriceService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
-import io.github.xiaoyureed.shopeecommon.utils.R;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.R;
 
 
 

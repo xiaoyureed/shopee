@@ -1,7 +1,7 @@
 package io.github.xiaoyureed.shopeecoupon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
 import io.github.xiaoyureed.shopeecoupon.entity.SkuLadderEntity;
 
 import java.util.Map;

@@ -1,7 +1,7 @@
 package io.github.xiaoyureed.shopeemember.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
 import io.github.xiaoyureed.shopeemember.entity.MemberCollectSpuEntity;
 
 import java.util.Map;

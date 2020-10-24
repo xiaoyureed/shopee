@@ -1,4 +1,4 @@
-package io.github.xiaoyureed.shopeecommon.utils; /**
+package io.github.xiaoyureed.shopeecommon; /**
  * Copyright (c) 2016-2019 人人开源 All rights reserved.
  *
  * https://www.renren.io
@@ -6,6 +6,7 @@ package io.github.xiaoyureed.shopeecommon.utils; /**
  * 版权所有，侵权必究！
  */
 
+import io.github.xiaoyureed.shopeecommon.exception.RRException;
 import org.apache.commons.lang3.StringUtils;
 
 /**

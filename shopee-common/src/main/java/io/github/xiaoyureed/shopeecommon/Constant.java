@@ -1,4 +1,4 @@
-package io.github.xiaoyureed.shopeecommon.utils; /**
+package io.github.xiaoyureed.shopeecommon; /**
  * Copyright (c) 2016-2019 人人开源 All rights reserved.
  *
  * https://www.renren.io

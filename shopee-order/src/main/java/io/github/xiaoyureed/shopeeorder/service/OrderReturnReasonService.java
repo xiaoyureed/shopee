@@ -1,7 +1,7 @@
 package io.github.xiaoyureed.shopeeorder.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
 import io.github.xiaoyureed.shopeeorder.entity.OrderReturnReasonEntity;
 
 import java.util.Map;

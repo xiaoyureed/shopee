@@ -1,9 +1,11 @@
 package io.github.xiaoyureed.shopeeproduct.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.xiaoyureed.shopeeproduct.entity.CategoryBrandRelationEntity;
 import io.github.xiaoyureed.shopeeproduct.service.CategoryBrandRelationService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
-import io.github.xiaoyureed.shopeecommon.utils.R;
+import io.github.xiaoyureed.shopeecommon.bean.R;
 
 
 
@@ -26,7 +27,7 @@ import io.github.xiaoyureed.shopeecommon.utils.R;
  * @date 2020-10-06 18:28:59
  */
 @RestController
-@RequestMapping("shopeeproduct/categorybrandrelation")
+@RequestMapping("/product/categorybrandrelation")
 public class CategoryBrandRelationController {
     @Autowired
     private CategoryBrandRelationService categoryBrandRelationService;
@@ -34,12 +35,15 @@ public class CategoryBrandRelationController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @RequestMapping("/category/list")
     //@RequiresPermissions("shopeeproduct:categorybrandrelation:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryBrandRelationService.queryPage(params);
+    public R list(@RequestParam Map<String, Object> params, @RequestParam("bandId") Long brandId){
+//        PageUtils page = categoryBrandRelationService.queryPage(params);
+//        return R.ok().put("page", page);
 
-        return R.ok().put("page", page);
+        List<CategoryBrandRelationEntity>  data = categoryBrandRelationService.list(new QueryWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId));
+        return R.okData(data);
+
     }
 
 

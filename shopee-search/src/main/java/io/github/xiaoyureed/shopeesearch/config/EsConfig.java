@@ -25,7 +25,7 @@ public class EsConfig {
     }
 
     @Bean
-    public RestHighLevelClient highLevelClient() {
+    public RestHighLevelClient esClient() {
         return new RestHighLevelClient(RestClient.builder(
                 // multi httpHost can be set here if es is deployed in a cluster
                 new HttpHost("localhost", 9200, "http")));

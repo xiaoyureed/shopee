@@ -1,7 +1,7 @@
 package io.github.xiaoyureed.shopeeproduct.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
 import io.github.xiaoyureed.shopeeproduct.entity.CategoryEntity;
 
 import java.util.List;
@@ -21,5 +21,12 @@ public interface CategoryService extends IService<CategoryEntity> {
     List<CategoryEntity> tree();
 
     void removeMenuByIds(List<Long> cateIds);
+
+    /**
+     * find full category path for specific categoryId , eg: [grand/parent/son]
+     * @param categoryId
+     * @return
+     */
+    Long[] findCatelogPath(Long categoryId);
 }
 

@@ -1,7 +1,7 @@
 package io.github.xiaoyureed.shopeeproduct.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.xiaoyureed.shopeecommon.utils.PageUtils;
+import io.github.xiaoyureed.shopeecommon.bean.PageUtils;
 import io.github.xiaoyureed.shopeeproduct.entity.AttrAttrgroupRelationEntity;
 
 import java.util.Map;
