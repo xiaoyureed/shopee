@@ -35,6 +35,13 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api(?<segment>/?.*), $\{segment}
+
+        # 处理来自 nginx 转发过来的请求
+        # 需要放置在最后, 若放在第一个, 会将 api 请求也匹配到
+        - id: host_route
+          uri: lb://shopee-product
+          predicates:
+            - Host=**.shopee.com,shopee.com
     nacos:
       discovery:
         server-addr: localhost:8848
